@@ -194,7 +194,8 @@ def ramp_id_types_2(
 
     url = urls.urls['ramp']['api'] % 'id-types'
     c = curl.Curl(url, silent = True, large = False)
-
+    import time
+    c.result = c.result.split("\n")[-1]
     return {
         id_type.strip()
         for i in json.loads(c.result)['data']
